@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .disabled {
+            Background-color: #ff0000; /* Couleur de fond rouge */
+            Cursor: not-allowed; /* Curseur « non autorisé » */
+        }
+    </style>
+</head>
+<body>
+
+<input type="text" id="champ1" placeholder="Champ 1">
+<input type="text" id="champ2" placeholder="Champ 2">
+<input type="text" id="champ3" placeholder="Champ 3">
+<button id="bouton">Valider</button>
+
+<script>
+    // Sélectionnez les éléments
+    const champ1 = document.getElementById('champ1');
+    const champ2 = document.getElementById('champ2');
+    const champ3 = document.getElementById('champ3');
+    const bouton = document.getElementById('bouton');
+
+    // Écoutez les changements dans les champs
+    champ1.addEventListener('input', toggleButtonState);
+    champ2.addEventListener('input', toggleButtonState);
+    champ3.addEventListener('input', toggleButtonState);
+
+    // Fonction pour activer/désactiver le bouton
+    function toggleButtonState() {
+        if (champ1.value && champ2.value && champ3.value) {
+            bouton.disabled = false;
+            bouton.classList.remove('disabled');
+        } else {
+            bouton.disabled = true;
+            bouton.classList.add('disabled');
+        }
+    }
+
+    // Écoutez le survol du bouton pour afficher la croix rouge
+    bouton.addEventListener("mouseover", () => {
+        if (bouton.disabled) {
+            bouton.style.backgroundColor = '#ff0000';
+        }
+    });
+
+    // Rétablissez la couleur de fond d’origine lorsqu’on quitte le bouton
+    bouton.addEventListener("mouseout", () => {
+        bouton.style.backgroundColor = '';
+    });
+
+</script>
+
+</body>
+</html>
+
